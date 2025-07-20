@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+/* Theme Variables */
+:root[data-theme="wine"] {
+  --bg-primary: 250 22% 98%; /* #FAFAF8 */
+  --bg-card: 0 0% 100%; /* #FFFFFF */
+  --text-primary: 355 46% 23%; /* #722F37 */
+  --text-sanskrit: 355 59% 16%; /* #5D252A */
+  --text-secondary: 200 6% 51%; /* #7F8C8D */
+  --accent-primary: 43 74% 51%; /* #D4AF37 */
+  --accent-hover: 43 85% 39%; /* #B8860B */
+  --shadow: 355 46% 23% / 0.1; /* rgba(114,47,55,0.1) */
+  --border-color: 210 19% 94%; /* #ECF0F1 */
+  --button-text: 355 46% 23%; /* #722F37 for wine theme buttons */
+}
+
+:root[data-theme="lotus"] {
+  --bg-primary: 250 22% 98%; /* #FAFAF8 */
+  --bg-card: 0 0% 100%; /* #FFFFFF */
+  --text-primary: 324 30% 41%; /* #8B4A6B */
+  --text-sanskrit: 324 35% 32%; /* #6D3A53 */
+  --text-secondary: 200 6% 51%; /* #7F8C8D */
+  --accent-primary: 340 82% 52%; /* #E91E63 */
+  --accent-hover: 340 69% 42%; /* #C2185B */
+  --shadow: 324 30% 41% / 0.1; /* rgba(139,74,107,0.1) */
+  --border-color: 210 19% 94%; /* #ECF0F1 */
+  --button-text: 324 30% 41%; /* #8B4A6B for lotus theme buttons */
+}
+
+:root[data-theme="grey"] {
+  --bg-primary: 0 0% 17%; /* #2C2C2C */
+  --bg-card: 0 0% 23%; /* #3A3A3A */
+  --text-primary: 0 0% 100%; /* #FFFFFF */
+  --text-sanskrit: 0 0% 94%; /* #F0F0F0 */
+  --text-secondary: 0 0% 80%; /* #CCCCCC */
+  --accent-primary: 0 84% 69%; /* #FF6B6B */
+  --accent-hover: 0 91% 65%; /* #FF5252 */
+  --shadow: 0 0% 0% / 0.3; /* rgba(0,0,0,0.3) */
+  --border-color: 0 0% 33%; /* #555555 */
+  --button-text: 0 0% 0%; /* #000000 for grey theme buttons */
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: hsl(var(--bg-primary));
+    color: hsl(var(--text-primary));
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+/* Custom component styles */
+.verse-container {
+  background-color: hsl(var(--bg-card));
+  border: 1px solid hsl(var(--border-color));
+  box-shadow: 0 4px 6px hsl(var(--shadow));
+}
+
+.sanskrit-text {
+  color: hsl(var(--text-sanskrit));
+  font-family: 'Noto Sans Devanagari', serif;
+  line-height: 1.8;
+}
+
+.secondary-text {
+  color: hsl(var(--text-secondary));
+}
+
+.accent-button {
+  background-color: hsl(var(--accent-primary));
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.accent-button:hover {
+  background-color: hsl(var(--accent-hover));
+  transform: translateY(-1px);
+}
+
+.theme-dot {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-dot:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px hsl(var(--shadow));
+}
+
+.theme-dot.active {
+  box-shadow: 0 0 0 3px hsl(var(--accent-primary));
+}
+
+/* Font size classes */
+.font-size-small { font-size: 14px; }
+.font-size-medium { font-size: 16px; }
+.font-size-large { font-size: 18px; }
+.font-size-extra-large { font-size: 20px; }
+
+/* Sanskrit font size scaling */
+.sanskrit-text.font-size-small { font-size: 18px; }
+.sanskrit-text.font-size-medium { font-size: 20px; }
+.sanskrit-text.font-size-large { font-size: 24px; }
+.sanskrit-text.font-size-extra-large { font-size: 28px; }
+
+@media (max-width: 768px) {
+  .sanskrit-text {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .sanskrit-text.font-size-small { font-size: 16px; }
+  .sanskrit-text.font-size-medium { font-size: 18px; }
+  .sanskrit-text.font-size-large { font-size: 20px; }
+  .sanskrit-text.font-size-extra-large { font-size: 24px; }
+}

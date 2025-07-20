@@ -1,0 +1,21 @@
+{
+  "name": "Shree Bhagwad Gita Wisdom",
+  "short_name": "Gita Wisdom",
+  "description": "Explore the divine wisdom of the Bhagavad Gita through 701 sacred verses",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#8B0000",
+  "theme_color": "#8B0000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "books", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

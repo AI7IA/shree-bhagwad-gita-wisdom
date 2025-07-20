@@ -1,0 +1,292 @@
+# Build Shree Bhagwad Gita Wisdom - Bhagavad Gita Verse Web App
+
+## Project Overview
+Create a modern, mobile-responsive web application called **Shree Bhagwad Gita Wisdom** that displays random Bhagavad Gita verses in an interactive flashcard format. The app should work seamlessly on both desktop and mobile devices.
+
+## Core Requirements
+
+### Tech Stack
+- **Frontend**: React.js with modern hooks
+- **Styling**: CSS3 with Flexbox/Grid, mobile-first responsive design
+- **Data**: Parse and load from CSV file containing 701 Bhagavad Gita verses
+- **Storage**: Browser localStorage for user preferences
+- **No backend required** - fully client-side application
+
+### Data Structure (CSV Columns)
+The app will use a CSV with these columns:
+1. ID (e.g., "BG1.1")
+2. Chapter (number)
+3. Verse (number) 
+4. Shloka (Sanskrit text in Devanagari)
+5. Transliteration (Roman script)
+6. HinMeaning (Hindi translation)
+7. EngMeaning (English translation)
+8. WordMeaning (detailed word-by-word explanation - shown on card flip)
+
+## App Structure
+
+### Two Main Screens
+1. **Home Screen** - Main verse display with flashcard interaction
+2. **Settings Screen** - User preferences and app configuration
+
+### Navigation
+- Simple header with app title and settings icon
+- Back button on settings screen
+- Clean, minimal navigation
+
+## Home Screen Design
+
+### Layout Components
+```
+┌─────────────────────────────────┐
+│ Shree Bhagwad Gita Wisdom    🎨  ⚙️            │ <- Header with theme selector
+├─────────────────────────────────┤
+│                                 │
+│ Chapter 1, Verse 1             │ <- Verse info
+│                                 │
+│ Sanskrit Shloka                 │ <- Main content area
+│ (Devanagari script)             │
+│                                 │
+│ Transliteration                 │
+│ (Roman script)                  │
+│                                 │
+│ Hindi Meaning                   │
+│                                 │
+│ English Meaning                 │
+│                                 │
+│ ─────────────────────────────── │
+│                                 │
+│ Detailed Word Meaning           │ <- Always visible below
+│ and Commentary                  │
+│                                 │
+│   [New Verse]  Verse 1 of 701  │ <- Footer
+└─────────────────────────────────┘
+```
+
+### Verse Display (All content visible)
+- Chapter and Verse number at top
+- Sanskrit Shloka in Devanagari script
+- Transliteration in Roman script
+- Hindi meaning
+- English meaning
+- Horizontal divider line
+- Detailed word-by-word meaning and commentary below
+
+### Header Theme Selector
+- Three color theme options as clickable icons/buttons:
+  1. **Wine Theme** (default)
+  2. **Lotus Theme** 
+  3. **Grey Theme**
+
+### Interactions
+- Theme selector in header to switch color schemes
+- "New Verse" button for random verse selection
+- Scroll to read full content
+- Touch/swipe friendly for mobile
+
+## Settings Screen Features
+
+### Appearance Settings
+- Font size adjustment (Small, Medium, Large, Extra Large)
+- Theme selection (Wine, Lotus, Grey)
+- Language display toggles:
+  - Show Sanskrit (on/off)
+  - Show Transliteration (on/off)
+  - Show Hindi meaning (on/off)
+  - Show English meaning (on/off)
+
+### Content Preferences
+- Auto-advance timer (Off, 30s, 1min, 2min, 5min)
+- Verse selection mode (Random / Sequential)
+- Default theme preference
+
+### App Information
+- About the Bhagavad Gita
+- Version information
+- Data source acknowledgment
+
+## Design Specifications
+
+### Color Palette
+
+#### Theme 1: Wine Theme (Default)
+```css
+:root[data-theme="wine"] {
+  --bg-primary: #FAFAF8;        /* Off-white background */
+  --bg-card: #FFFFFF;           /* Pure white content area */
+  --text-primary: #722F37;      /* Wine - main text */
+  --text-sanskrit: #5D252A;     /* Deep wine - Sanskrit text */
+  --text-secondary: #7F8C8D;    /* Medium gray - supporting text */
+  --accent-primary: #D4AF37;    /* Soft gold - buttons/highlights */
+  --accent-hover: #B8860B;      /* Darker gold - hover states */
+  --shadow: rgba(114,47,55,0.1); /* Wine shadow */
+  --border: #ECF0F1;            /* Light gray borders */
+}
+```
+
+#### Theme 2: Lotus Theme
+```css
+:root[data-theme="lotus"] {
+  --bg-primary: #FAFAF8;        /* Off-white background */
+  --bg-card: #FFFFFF;           /* Pure white content area */
+  --text-primary: #8B4A6B;      /* Lotus pink - main text */
+  --text-sanskrit: #6D3A53;     /* Deep lotus - Sanskrit text */
+  --text-secondary: #7F8C8D;    /* Medium gray - supporting text */
+  --accent-primary: #E91E63;    /* Lotus accent - buttons/highlights */
+  --accent-hover: #C2185B;      /* Darker lotus - hover states */
+  --shadow: rgba(139,74,107,0.1); /* Lotus shadow */
+  --border: #ECF0F1;            /* Light gray borders */
+}
+```
+
+#### Theme 3: Grey Theme
+```css
+:root[data-theme="grey"] {
+  --bg-primary: #2C2C2C;        /* Dark grey background */
+  --bg-card: #3A3A3A;           /* Lighter dark grey content area */
+  --text-primary: #FFFFFF;      /* White - main text */
+  --text-sanskrit: #F0F0F0;     /* Light grey - Sanskrit text */
+  --text-secondary: #CCCCCC;    /* Light gray - supporting text */
+  --accent-primary: #FF6B6B;    /* Coral accent - buttons/highlights */
+  --accent-hover: #FF5252;      /* Darker coral - hover states */
+  --shadow: rgba(0,0,0,0.3);    /* Dark shadow */
+  --border: #555555;            /* Medium gray borders */
+}
+```
+
+### Typography
+- System fonts with good Unicode support for Sanskrit
+- Responsive font sizes (16px base, scaling for mobile)
+- Proper line height for readability
+- Font weight hierarchy (400 regular, 600 semi-bold, 700 bold)
+
+### Mobile Responsiveness
+- Mobile-first CSS approach
+- Touch-friendly button sizes (minimum 44px)
+- Proper viewport meta tag
+- Swipe gestures for card interaction
+- Responsive breakpoints:
+  - Mobile: 320px - 767px
+  - Tablet: 768px - 1023px
+  - Desktop: 1024px+
+
+## Technical Implementation
+
+### File Structure
+```
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── VerseDisplay.jsx
+│   ├── ThemeSelector.jsx
+│   ├── Settings.jsx
+│   └── Navigation.jsx
+├── hooks/
+│   ├── useVerseData.js
+│   ├── useSettings.js
+│   └── useTheme.js
+├── utils/
+│   ├── csvParser.js
+│   └── randomizer.js
+├── styles/
+│   ├── global.css
+│   ├── themes.css
+│   ├── components.css
+│   └── mobile.css
+├── data/
+│   └── bhagavad_gita.csv
+└── App.jsx
+```
+
+### Key Features to Implement
+
+#### Data Management
+- CSV parsing function using Papa Parse or similar
+- Local storage for user preferences and theme selection
+- Smart randomization algorithm (avoid recent repeats)
+- Efficient verse loading and caching
+
+#### Verse Display Component
+- Single scrollable layout with all content visible
+- Dynamic content rendering based on user preferences
+- Responsive text sizing
+- Smooth scroll behavior
+
+#### Theme Management
+- React Context for global theme state
+- CSS custom properties for theme switching
+- localStorage persistence for theme selection
+- Smooth theme transitions
+
+#### Mobile Optimization
+- Touch event handlers
+- Smooth scroll behavior
+- Hardware acceleration for theme transitions
+- Responsive typography scaling
+
+### Animation Requirements
+```css
+/* Theme transition animation */
+:root {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth scroll for long verses */
+.verse-container {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+/* Theme selector hover effects */
+.theme-selector button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-selector button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px var(--shadow);
+}
+```
+
+### Accessibility Features
+- ARIA labels for screen readers
+- Keyboard navigation support
+- High contrast mode compatibility
+- Focus indicators
+- Alt text for any images
+
+## Performance Considerations
+- Lazy load verse data
+- Optimize bundle size
+- Use React.memo for components
+- Debounce user interactions
+- Efficient re-renders
+
+## PWA Features (Optional)
+- Service worker for offline access
+- Web app manifest for install prompt
+- Caching strategy for verses
+- Add to home screen capability
+
+## Testing Requirements
+- Test on various screen sizes
+- Cross-browser compatibility
+- Touch interaction testing
+- Performance testing with full dataset (701 verses)
+
+## Deployment
+- Build optimized production bundle
+- Deploy to Replit hosting
+- Ensure mobile compatibility
+- Test on actual mobile devices
+
+## Success Criteria
+- Smooth theme transitions
+- Fast loading times (<3 seconds)
+- Intuitive user interface with easy theme switching
+- Proper Sanskrit text rendering across all themes
+- Responsive design across all devices
+- Local data and theme persistence
+- Clear readability in all three color themes
+
+Start with the core verse display functionality and theme selector, then add settings and polish. Focus on mobile experience first, then enhance for desktop. Ensure all three themes provide excellent readability and spiritual ambiance.
